@@ -1,5 +1,5 @@
 /**
-Subject: Top 10 Methods for Java Arrays. 
+Subject: Top 10 Methods for Java Arrays.
 The following are top 10 methods for Java Array library, i.e. only methods
 are defined.
 Author: LI11N students
@@ -34,25 +34,25 @@ public class ArrayUtilities {
 		System.out.println("Reverse array:");
 		reverse(arr);
 		printArray(arr, 0, arr.length-1);
-		
+
 		// find
 		int i = find(arr, 8);
 		System.out.println("Index of 8 = " + i);
 		System.out.println("Index of 99 (non exist) -> return arr.length = " + find(arr, 99) + "\n");
-		
+
 		// findMax
 		int idxMax = findMax(arr);
 		System.out.println("Max = " + arr[idxMax] + " in position " + idxMax + "\n");
-		
+
 		// findMin
 		int idxMin = findMin(arr);
 		System.out.println("Min = " + arr[idxMin] + " in position " + idxMin + "\n");
-		
+
 		// rotateLeft
 		System.out.println("After rotate left");
 		rotateLeft(arr);
 		printArray(arr, 0, arr.length-1);
-		
+
 		// rotateRight
 		System.out.println("After rotate right");
 		rotateRight(arr);
@@ -71,7 +71,7 @@ public class ArrayUtilities {
 
 		// order values by increase
 		System.out.println("After ordering");
-		sort(arr);
+		wow = sort(arr);
 		printArray(arr, 0, arr.length-1);
 
 		// count repetead numbers
@@ -96,9 +96,9 @@ public class ArrayUtilities {
         int[] nnewarr = new int[str.length()];
         if (str.length() != 0) {
             String[] numbers = str.split(" ");
-            
-            for (i = 0; i < numbers.length; ++i) {
-                nnewarr[i] = string2Int(numbers[i]);
+
+            for (int j = 0; j < numbers.length; ++j) {
+                nnewarr[j] = string2Int(numbers[j]);
             }
             if (compareArray(arr, nnewarr) == true)
                 System.out.println("Arrays are equals.\n" );
@@ -108,7 +108,7 @@ public class ArrayUtilities {
         else
             System.out.println("None array exist.\n");
 
-	
+
         // Intersection of 2 ordered arrays
 		System.out.print("Intersection: ");
 		nnewarr = sort(trim(nnewarr));  	// last array
@@ -136,7 +136,7 @@ public class ArrayUtilities {
 	// Print unidimensional array.
 	// input: array (a), first index (beg) and last index (end)
 	// output: Print array with brackets
-	public static void printArray(int[] a, int beg, int end) {		
+	public static void printArray(int[] a, int beg, int end) {
 		for(int i = beg; i < end; ++i){
 			if (i == 0) {
 				System.out.print("[ ");
@@ -165,12 +165,12 @@ public class ArrayUtilities {
 		}
 		return b;
 	}
-	
+
 
 	// Compare arrays
 	// input:  two arrays (a and b)
 	// output: boolean value or simply true/false
-	public static boolean compareArray(int[] a, int[] b) {		
+	public static boolean compareArray(int[] a, int[] b) {
 		boolean ok = true;
 		for (int i = 0; i < a.length ; i++) {
 			if (a[i] != b[i]) {
@@ -181,7 +181,7 @@ public class ArrayUtilities {
 	}
 
 
-	// Reverse the array 
+	// Reverse the array
 	// Pre-condition: array must be, at least, one position
 	// input: array (a)
 	// output: the same array, then the return should be "void"
@@ -202,9 +202,8 @@ public class ArrayUtilities {
 			rev_arr[i] = a[reverser];
 			reverser -= 1;
 		}
-
 	}
-	
+
 
 	// Return the index of element if exist or, a.length otherwise
 	// input: array (a) and a value (elem)
@@ -217,13 +216,13 @@ public class ArrayUtilities {
 				break;
 			}
 		}
-		return rtn; 
+		return rtn;
 	}
-	 
 
-	// Return the index of maximum 
+
+	// Return the index of maximum
 	// Pre-condition: array must be, at least, one position
-	// input: array (a) 
+	// input: array (a)
 	// output: position with maximum value
 	public static int findMax(int[] a) {
 		int max = 0, max_idx = 0;
@@ -235,10 +234,10 @@ public class ArrayUtilities {
 		}
 		return max;
 	}
-	
-	// Return the index of minimum 
+
+	// Return the index of minimum
 	// Pre-condition: array must be, at least, one position
-	// input: array (a) 
+	// input: array (a)
 	// output: position with minimum value
 	public static int findMin(int[] a) {
 		int min = findMax(a), min_idx = 0;
@@ -250,7 +249,7 @@ public class ArrayUtilities {
 		}
 		return min_idx;
 	}
-	
+
 	// Rotate elements to left
 	// Pre-condition: array must be, at least, one position
 	// input: array (a)
@@ -269,8 +268,8 @@ public class ArrayUtilities {
 		}
 		printArray(left_arr,0,left_arr.length - 1);
 	}
-	
-	
+
+
 	// Rotate elements to right
 	// Pre-condition: array must be, at least, one position
 	// input: array (a)
@@ -303,7 +302,7 @@ public class ArrayUtilities {
 			}
 		}
 		int[] exit_arr = new int [hits];
-		
+
 		for (int i = 0; i < hits; i++) {
 			for ( int elem_a : a ) {
 				for (int elem_b : b) {
@@ -322,41 +321,48 @@ public class ArrayUtilities {
 	// output: an array with result of union
 	public static int[] union(int[] ... arrays){
 		int union_len = 0;
-		for ( int a : arrays) {
+		for ( int[] a : arrays) {
 			union_len += a.length;
 		}
 		int[] union_arr = new int[union_len];
-		for (int i = 0; i < union_len; i++) {
-			
+		for (int i = 0; i < union_len; i++ ) {
+			for (int a[] : arrays ) {
+				for ( int tgt : a ) {
+					union_arr[i] = tgt;
+				}
+			}
 		}
+		printArray(union_arr,0,union_len - 1);
 	}
 
 	public static boolean findDuplicated(int[] a, int counter, int value) {
+		boolean ok = true;
 		
+		return ok;
 	}
 
-	// Remove equals 
+	// Remove equals
 	// Pre-condition: array must be, at least, one position
 	// input: array
 	// output: an array without equals values
 	public static int[] removeEquals(int[] a){
-		
+
     }
 
 
-    // Count equals numbers 
+    // Count equals numbers
 	// Pre-condition: array must be, at least, one position
 	// input: array
 	// output: number of equals
     public static int countEquals(int[] a){
-    	
+
 	}
 
 
-	// Convert element of an array from string to integer. 
+	// Convert element of an array from string to integer.
 	// Pre-condition: considering negative values
 	// input: String
-	// output: integer. 
+	// output: integer.
 	public static int string2Int( String str ){
    		int decimal = 1, tgt_int = 0;
 		for (int i = str.length(); i > 0; i--) {
@@ -364,22 +370,31 @@ public class ArrayUtilities {
             decimal *= 10;
 		}
 		return tgt_int;
-	}   
+	}
 
-	// Convert element of an array from integer to string. 
+	// Convert element of an array from integer to string.
 	// Pre-condition: considering negative values
 	// input: integer
-	// output: String. 
+	// output: String.
 	public static String[] int2String( int[] a ){
-       
-	}   
 
-	// Is a capicua 
+	}
+
+	// Is a capicua
 	// Pre-condition: array must be, at least, one position
 	// input: array (a)
 	// output: boolean result
-	public static boolean isCapicua(int[] a){ 
-		
+	public static boolean isCapicua(int[] a){
+		boolean ok = true;
+		int a_len = a.length , a_last = a_len - 1;
+		for (int i = 0; i < a_len ; i++) {
+			if (a[i] != a[a_last]) {
+				ok = false;
+				break;
+			}
+			else a_last -= 1;
+		}
+		return ok;
 	}
 
 
@@ -388,25 +403,63 @@ public class ArrayUtilities {
 	// input: array (a) and number (num)
 	// output: a second array with num
 	public static int[] append(int[] a, int num) {
-		
+		int[] b_arr = new int [a.length + 1];
+		int i = 0;
+		for (int elem : a) {
+			b_arr[i] = elem;
+			i++;
+		}
+		b_arr[a.length] = num;
+		return b_arr;
 	}
 
 
 	// Square elements of an array
 	public static int[] quadratic(int[] a){
-		
+		int[] b_arr = new int [a.length];
+		int i = 0;
+		for (int elem : a) {
+			b_arr[i] = elem ** 2;
+			i++;
+		}
+		return b_arr;
 	}
 
 
 	// Remove all zeros at the end of the array
 	public static int[] trim(int[] a) {
-		
+		int zero_idx = 0;
+		for (int i = a.length; i >= 0; i--) {
+			if (a[i] == 0) {
+				zero_idx = i;
+			}
+			else break;
+		}
+		int[] b_arr = new int [zero_idx + 1];
+		for (int i = 0; i < b_arr.length ; i++) {
+			b_arr[i] = a[i];
+		}
+		return b_arr;
 	}
 
-	// Ascending order 
+	// Ascending order
 	// Pre-condition: array must be, at least, one position
 	public static int[] sort(int[] a){
-		
-	}
+		int lowest = 0;
+		int i = 0;
+		boolean ok = true;
+		do {
+			if (a[i] < a[i+1]) {
+				if(a[i] < lowest) {
+					lowest = a[i];
+					a[i+1] = a[i];
+					a[i] = lowest;
+				}
+			}
+			else {
 
+			}
+			i++;
+		} while (ok);
+	}
 }
